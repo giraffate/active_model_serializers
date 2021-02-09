@@ -8,9 +8,11 @@ module ActiveModelSerializers
     include ActiveModelSerializers::Logging
 
     delegate :serializable_hash, :as_json, :to_json, to: :adapter
-    notify :serializable_hash, :render
-    notify :as_json, :render
-    notify :to_json, :render
+    # HACK: these may be slow
+    # 
+    # notify :serializable_hash, :render
+    # notify :as_json, :render
+    # notify :to_json, :render
 
     # Primary interface to composing a resource with a serializer and adapter.
     # @return the serializable_resource, ready for #as_json/#to_json/#serializable_hash.
